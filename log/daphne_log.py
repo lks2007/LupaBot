@@ -1,7 +1,7 @@
 import logging
 import sys
 
-logging.basicConfig(filename='daphne.log',level=logging.DEBUG,\
+logging.basicConfig(filename='log/daphne.log',level=logging.DEBUG,\
       format='%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s')
 
 try:
