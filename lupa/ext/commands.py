@@ -22,7 +22,7 @@ def addCommand(name, response):
 def onMsg(msg):
     if prefix != None:
         if msg == prefix+"status" or msg == prefix+"status bot" or msg == prefix+"status server":
-            addCommand(['status', 'bot', 'server'], [str('Server start since '+getLog()), str('Bot start since '+getLog('bot')), str('Server start since '+getLog())])
+            addCommand(['status', 'bot', 'server'], ['Server start since '+str(getLog()), 'Bot start since '+str(getLog('bot')), 'Server start since '+str(getLog())])
 
         m = msg.split()
         if len(m) > 1:
