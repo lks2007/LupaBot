@@ -13,5 +13,4 @@ echo '
 
 cd ..
 sh -c 'python log/bot_log.py'
-sleep 1
 sh -c 'python bot.py'
