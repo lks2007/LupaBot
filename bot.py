@@ -61,11 +61,11 @@ def convertTime(dateL):
         return str(second)+"s"
 
 def getLog(*argv):
-    if argv == "bot":
+    if argv:
         with open('log/bot.log', 'r') as f:
             lines = f.readlines()
-            last = lines[-1]
-            return convertTime(last)
+            l = lines[-1]
+            return convertTime(l)
             
     else:
         with open('log/daphne.log', 'r') as f:  
