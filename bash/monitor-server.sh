@@ -11,6 +11,8 @@ echo '
                                                                                                
 '
 
+cd ..
+
 if [[ $EUID -ne 0 ]]; then
    echo "$( tput setaf 1 )$(tput bold)This script must be run as root$(tput setaf 5)$(tput sgr0)";
    exit 1
@@ -26,7 +28,7 @@ Tools (1) Daphne\n'
     if [[ $response == 'Y' ]] || [[ $response == '' ]]; then
 
         sh -c 'sudo systemctl daemon-reload; sudo systemctl restart daphne_lks.service' &> /dev/null
-        sh -c 'python ../log/daphne_log.py -r' &> /dev/null
+        sh -c 'python log/daphne_log.py -r' &> /dev/null
 
         echo -ne '\n\ndaphne                    [##############----------------------------------------------] 23%\r'
         sleep 0.5
@@ -71,7 +73,7 @@ Tools (4) Redis Postgresql Nginx Daphne\n'
 
 
         sh -c 'sudo systemctl daemon-reload; sudo systemctl start daphne_lks.service' &> /dev/null
-        exec python ../log/daphne_log.py
+        exec python log/daphne_log.py
 
         echo -ne 'daphne                    [##############----------------------------------------------] 23%\r'
         sleep 0.5

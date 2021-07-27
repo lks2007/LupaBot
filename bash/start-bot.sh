@@ -11,6 +11,7 @@ echo '
                                                                                             
                                                                                             '
 
-sh -c 'python ../log/bot_log.py'
+cd ..
+sh -c 'python log/bot_log.py'
 sleep 1
-sh -c 'python ../bot.py'
+sh -c 'python bot.py'
