@@ -1,6 +1,7 @@
 from lupa import *
 from lupa.ext.commands import *
 from datetime import datetime
+from PIL import ImageDraw
 import asyncio
 
 class Client():
@@ -18,6 +19,7 @@ class Client():
         prefix = add_prefix('/')
         self.help = addCommand(['help'], '<b>Help command:</b> <br><em class="m-0">status:    start time "job"</em>')
         self.status = addCommand(['status', 'bot', 'server'], ['Server start since '+str(getLog()), 'Bot start since '+str(getLog('bot')), 'Server start since '+str(getLog())])
+        self.img = addCommand(['img'], '')
         
         self.threading = start(self.response['websocket'], self.response['id'])
         self.disconnect = await disconnect(self.token)
@@ -72,6 +74,10 @@ def getLog(*argv):
             lines = f.readlines()
             last = lines[-1]
             return convertTime(last)
+
+def createImg(user):
+    w, h = 220, 190
+
 
 if __name__ == "__main__":
     client = Client()

@@ -4,6 +4,7 @@ import json
 import ssl
 import pathlib
 from lupa.ext.commands import *
+from bot import createImg
 
 ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
 localhost_pem = pathlib.Path(__file__).with_name("certificate.crt")
