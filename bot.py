@@ -6,6 +6,7 @@ import asyncio
 class Client():
     def __init__(self):
         self.token = '34427d32-ed4f-4133-b891-32482febdcfc'
+        self.version = '1.0.3'
         self.login = asyncio.get_event_loop()
         self.response = self.login.run_until_complete(run(self.token))
         asyncio.run(self.on_ready())
@@ -14,10 +15,11 @@ class Client():
         print('+----------------------+')
         print("+--- Logged as "+self.response['name']+" ---+")
         print('+----------------------+')
+        print('\nversion: {0}'.format(self.version))
 
         prefix = add_prefix('/')
-        self.help = addCommand(['help'], '<b>Help command:</b> <br><em class="m-0">status:    start time "job"</em>')
-        self.status = addCommand(['status', 'bot', 'server'], ['Server start since '+str(getLog()), 'Bot start since '+str(getLog('bot')), 'Server start since '+str(getLog())])
+        self.help = addCommand(['help'], '<b>Help command:</b> <br><em class="m-0">status:    start time "job" - help</em>')
+        self.status = addCommand(['status', 'bot', 'server', 'help'], ['Server start since '+str(getLog()), 'Bot start since '+str(getLog('bot')), 'Server start since '+str(getLog()), 'Status arg: "bot", "server", "help"'])
         
         self.threading = start(self.response['websocket'], self.response['id'])
         self.disconnect = await disconnect(self.token)
@@ -34,6 +36,13 @@ def convertTime(dateL):
     hour = now.hour - dateLaunch.hour
     minute = now.minute - dateLaunch.minute
     second = now.second - dateLaunch.second
+
+    if day < 0:
+        year -= 1
+        if(year%4==0 and year%100!=0 or year%400==0):
+            day = 366 + day
+        else:
+            day = 365 + day
 
     if hour < 0:
         day -= 1
@@ -70,8 +79,8 @@ def getLog(*argv):
     else:
         with open('log/daphne.log', 'r') as f:  
             lines = f.readlines()
-            last = lines[-1]
-            return convertTime(last)
+            l = lines[-1]
+            return convertTime(l)
 
 if __name__ == "__main__":
     client = Client()
